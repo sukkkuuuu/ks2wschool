@@ -14,11 +14,11 @@ from .tokens import account_activation_token
 # Create your views here.
 
 def login(request):
-    if request.user.is_authenticated:
-        if request.GET.get('next'):
-            return resolve_url(request.GET['next'])
-        else:
-            return redirect('index')
+    # if request.user.is_authenticated:
+    #     if request.GET.get('next'):
+    #         return resolve_url(request.GET['next'])
+    #     else:
+    #         return redirect('index')
     if request.method == 'POST':
         form = LoginUserForm(request.POST)
         if form.is_valid():

@@ -17,6 +17,7 @@ class CreateUserForm(forms.ModelForm):
         birth_date = self.cleaned_data.get("birth_date")
         if birth_date >= datetime.date.today():
             raise forms.ValidationError("생일 날짜를 확인해주세요.")
+            
         return birth_date
 
     def clean_password1(self):
