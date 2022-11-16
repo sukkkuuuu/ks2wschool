@@ -1,29 +1,47 @@
-{% load static %}
+    {% load static %}
 <!DOCTYPE html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css'%}?after=11">
+        <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css'%}?after=41">
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        
     </head>
     <body>
 <html>
         <header>
             <div class = "ks2w-header">
-                <div class ="ks2w-header-inner">
+                <div class ="ks2w-header-inner"> 
                     <a href="{% url 'index' %}"><img style="background-color:#26394E;" src="{% static 'icon.png'%}" 
                        height="45px" width = "70px" alt="ks2w image"></a>
                 </div>
+
                 <div class ="ks2w-login">
-                    <button id ="mainbtu">
                         <!-- 인증되었 다면 -->
                         {% if user.is_authenticated %}
-                            <a href="{% url 'logout' %}">Logout</a>
+                        <div class = "user-info">
+                            <div class = "info-box">
+                                <!-- 기본 이미지 넣기? -->
+                                <img src="{% static 'basic.png'%}" height="45px" width = "70px" alt="회원정보">
+                                <!-- <p>회원정보 기본 이미지 넣기</p>  -->
+                            </div>
+                            <div class = "login-info">
+                                <a href="{% url 'logout' %}">Logout</a>
+                                <!-- info url 넣어 줘야함 -->
+                                <a href="{% url 'logout' %}">Info</a>
+                            </div>
+                        </div>
                         {% else %}
-                            <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+                            <div>
+                                <a href="{% url 'login' %}?next={{ request.path }}">Login</a>
+                            </div>
                         {% endif %}
-                        </button>
                 </div>
             </div>
         </header>
-        {% block content %}      
-        {% endblock %} 
+
+        
+        {% block content %}
+
+        {% endblock %}
+        
     </body>
 </html>

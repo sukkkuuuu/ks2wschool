@@ -4,32 +4,9 @@ from account.models import User
 
 import datetime
 
-# 회원가입 폼
 class CreateUserForm(forms.ModelForm):
-    email = forms.EmailField(
-        label='', 
-        error_messages={'required': '이메일을 입력해주세요'},
-        widget=forms.EmailInput(attrs = {'placeholder' : 'email'}),
-    )
-    password1 = forms.CharField(
-        label=' ', 
-        widget=forms.PasswordInput(attrs = {'placeholder' : 'password'})
-    )
-    password2 = forms.CharField(
-        label=' ', 
-        widget=forms.PasswordInput(attrs = {'placeholder' : 'password confirmation'})
-    )
-    nickname = forms.CharField(
-        label='', 
-        # error_messages={'required': '비밀번호를 입력해주세요'},
-        widget=forms.TextInput(attrs = {'placeholder' : 'nickname'}),
-    )
-    name = forms.CharField(
-        label='', 
-        # error_messages={'required': '비밀번호를 입력해주세요'},
-        widget=forms.TextInput(attrs = {'placeholder' : 'name'}),
-    )
-    
+    password1 = forms.CharField(label='password', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='password confirmation', widget=forms.PasswordInput)
     birth_date = forms.DateField(label='birth_date', widget=forms.DateInput(attrs={
         'type': 'date',
         'max': datetime.date.today(),
@@ -40,7 +17,6 @@ class CreateUserForm(forms.ModelForm):
         birth_date = self.cleaned_data.get("birth_date")
         if birth_date >= datetime.date.today():
             raise forms.ValidationError("생일 날짜를 확인해주세요.")
-            
         return birth_date
 
     def clean_password1(self):
@@ -69,18 +45,33 @@ class CreateUserForm(forms.ModelForm):
         fields = ("email", "nickname", "password1", "password2", "name", "birth_date")
 
 
-# 로그인 폼
+class UpdateUserForm(forms.ModelForm):
+    birth_date = forms.DateField(label='birth_date', widget=forms.DateInput(attrs={
+        'type': 'date',
+        'max': datetime.date.today(),
+        'value': datetime.date.today(),
+    }))
+    short_info = forms.CharField(label='short_info', required=False, widget=forms.Textarea(attrs={
+        'resize': None,
+    }))
+    
+    class Meta:
+        model= User
+        fields = ("name", "birth_date", "short_info", "profile_image")
+        
+    
+
 class LoginUserForm(forms.Form):
     email = forms.EmailField(
-        label='', 
+        label='email', 
         error_messages={'required': '이메일을 입력해주세요'},
-        widget=forms.EmailInput(attrs = {'placeholder' : 'email'}),
+        widget=forms.EmailInput(attrs = {'placeholder' : 'Username(Email)'})
     )
 
     password = forms.CharField(
-        label='', 
+        label='password', 
         error_messages={'required': '비밀번호를 입력해주세요'},
-        widget=forms.PasswordInput(attrs = {'placeholder' : 'password'}),
+        widget=forms.PasswordInput(attrs = {'placeholder' : 'Password'})
     )
     
     def clean(self):                                           
@@ -91,7 +82,7 @@ class LoginUserForm(forms.Form):
             try:
                 user = User.objects.get(email=username)
                 if not user.check_password(password):
-                    self.add_error('password', '아이디 또는 비밀번호를 틀렸습니다.')     
+                    self.add_error('password', '비밀번호를 틀렸습니다.')     
                 else:
                     self.user_id = user.id                                 
             except Exception:

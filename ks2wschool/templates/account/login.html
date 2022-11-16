@@ -1,9 +1,15 @@
 <!-- login 키 눌렸을 때 실행-->
 {% extends 'base.html' %}
 {% block content %}
+<section class = "login-inner">
 <h1>Login</h1>
+<div class="error_field">
+
+    {{ form.errors }}
+</div>
+
     <div class = "login-page">
-        
+    
         <form method="POST" action="{% url 'login'%}?next={{ request.path }}">
             {% csrf_token %}
             
@@ -11,21 +17,39 @@
                 {{ error }}
                 <br>
             {% endif %}
-            {{ form.errors }}
-
+            
             {% for field in form %}
-                {{ field.erros }}
-                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }}
+                <div calss = "login-form" style = "
+                    position:absolute;">
+                    {{ field }}
+                    {% if field.name == 'email' %}
+                    <button type="button" class="{{ field.name }}_btn" style="
+                        position:absolute;
+                        left: 150px;
+                        border: 0;
+                        background-color: transparent;
+                        font-size: 12px;
+                        cursor: pointer;
+
+                    " onclick="show_password()">▶</button>
+                    {% endif %}
+                </div>
             {% endfor %}
             <br>
-            <div style="display:flex; ">
-                
+            <div class = "login-label" style="display:flex; ">
                     <input type="submit" value="Login">
-                    <a href="{% url 'signup' %}">signup</a>   
-                
+            </div>
+            <div style = "font-size: 10px;">
+                <a href="{% url 'signup' %}"><span style = "text-align : right">아이디찾기/</span></a>
+                <a href="{% url 'signup' %}"><span style = "text-align : right">비밀번호찾기/</span></a>
+                <a href="{% url 'signup' %}"><span style = "text-align : right">회원가입</span></a>
             </div>
         </form>
-        
     </div>
+    <script>
+        function show_password(){
+            $("input[type='password']").slideDown(300);
+        };
+    </script>
+</section>
 {% endblock %}

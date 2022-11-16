@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{ email }}에 인증메일이 발송되었습니다.</p>
+    <p>메일에서 계정을 활성화해주세요.</p>
+    <p>메일에서 계정을 활성화한 후 다시 로그인해주세요.</p>
+    <a href="{% url 'login' %}">로그인</a>
+{% endblock %}

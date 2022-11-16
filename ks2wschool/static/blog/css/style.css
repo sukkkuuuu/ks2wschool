@@ -1,3 +1,68 @@
+html{
+  overflow-x: scroll;
+  overflow-y: scroll;
+
+}
+
+html *{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+body{
+  text-align: center;
+  min-width: 1024px;
+}
+
+form{
+  display : flex;
+  flex-direction: column;
+  align-items:center;
+  border: 1px solid black;
+  background-color: rgba(23,111,42,0.8);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+a{
+  text-decoration: none;
+  color:darkturquoise;
+}
+
+a:visited{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+  color:green;
+}
+
+a:active{
+  text-decoration: none;
+  color:blue;
+}
+
+.user-info{ 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.login-info{
+  display: flex;
+  flex-direction: column;
+  font-size : 15px;
+  justify-content: center;
+}
+
+.info-box, .login-label, .signup-label{
+    margin : 10px;
+}
+
+input[name = "password"]{
+  display : none;
+}
+
 .ks2w-header{
     height: 100%;
     display: flex;
@@ -6,161 +71,39 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
+.ks2w-login{
+  float : left;
+  display: flex;
+  justify-content: space-between;
+}
+
 .login-page, .signup-page{
     display : flex;
     justify-content: center;
-    
-}
-
-form{
-    display : flex;
-    flex-direction: column;
-    align-items:center;
-}
-
-body, html {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color:#26394E ;
   }
-
-  article {
-    float: left;
-    padding: 20px;
-    width: auto;
-    background-color: #f1f1f1;
-    height: 300px; /* only for demonstration, should be removed */
-  }
-
-  #menu {
-    height: 100%;
-    position: fixed;
-    background-color: #FED057;
-    width: 300px;
-    transition: 1000ms all cubic-bezier(0.19, 1, 0.22, 1);
-    transform: translateX(-100%);
-    left: 60px;
-  }
-
-  #menu.expanded {
-    transform: translateX(0%);
-    left: 0px;
-  }
-
-  .menu-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-
-  #blob {
-    top: 0;
-    z-index: -1;
-    right: 60px;
-    transform: translateX(100%);
-    height: 100%;
-    position: absolute;
-  }
-
-  #blob-path {
-    height: 100%;
-    fill:  #FED057;
-  }
-
-  .hamburger {
-    right: 20px;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;  
-  }
-
-  .hamburger .line {
-    width: 100%;
-    height: 4px;
-    background-color: #fff;
-    position: absolute;
-  }
-
-  .hamburger .line:nth-child(2) {
-    top: 50%;
-    margin-top: -2px;
-  }
-
-  .hamburger .line:nth-child(3) {
-    bottom: 0;
-  }
-
-  /* h1 {
-    position: fixed;
-    right: 0;
-    margin: 0;
-  } */
   
+.error_field{
+  text-align: center;
+  color: red;
+  display: flex;
+  justify-content: center;
+  padding-right : 60px;
+}
+.error_field ul{
+  list-style-type: none;
+}
 
-  ul {
-    padding: 0;
-    list-style: none;
-    width: 80%;
-    margin-left: 10%;
-    position: absolute;
-    top: 10px;
-  }
-
-  ul li {
-    color: #fff;
-    font-family: sans-serif;
-    padding: 20px 0;
-  }
-
-  h2 {
-    position: absolute;
-     left: 50%;
-    color: #fff;
-    margin: 0;
-    font-size: 16px;
-    font-family: sans-serif;
-    font-weight: 100;
-  }
-  /*BUTTON*/
-  #mainbtu{
-    display: block;
-    margin: 40px auto 0px;
-    text-align: center;
-    background: #ed2553;
-    border-radius: 3px;
-    box-shadow: 0 10px 20px -8px rgb(240, 75, 133);
-    padding: 10px 17px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    color: #ffffff;
-    text-decoration: none;
-    -webkit-transition: 0.3s ease;
-    transition: 0.3s ease;
-}
-.like-content .btn-secondary:hover {
-    transform: translateY(-3px);
-}
-.like-content .btn-secondary .fa {
-    margin-right: 5px;
-}
-.animate-like {
-  animation-name: likeAnimation;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-duration: 0.65s;
-}
-@keyframes likeAnimation {
-  0%   { transform: scale(30); }
-  100% { transform: scale(1); }
-}
-#mainbtu{
-  width:100px;
-  margin:auto;
+.btn{
   display: block;
+  border: 1px solid black;
+  padding: 3px;
+  margin: 3px auto;
+  width:100px;
+  text-align: center;
+  text-decoration: none;
+}
+
+
+input{
+  padding-right : 20px;
 }
